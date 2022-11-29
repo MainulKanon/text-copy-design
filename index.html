@@ -2,84 +2,144 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-.tooltip {
-  position: relative;
-  display: inline-block;
+.text-copy-container{
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+  text-align: center;
 }
+
+.text-copy-title {
+    margin-bottom: 50px;
+}
+.text-copy-title h1{
+  font-size: 36px;
+  line-height: 1em;
+  line-height: 50px;
+  margin: 0;
+  padding: 0;
+
+}
+.text-copy-title h2{
+  font-size: 32px;
+  margin: 0;
+  line-height: 50px;
+  padding: 0;
+
+}
+.text-copy-input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 500px;
+}
+
+.text-copy-input-container input{
+  width: 100%;
+    font-size: 16px;
+    padding: 15px;
+    border: 1px solid #c7c5c5;
+    box-shadow: 0px 0px 40px 10px rgb(0 0 0 / 6%);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.text-copy-input-container button{
+    font-size: 16px;
+    padding: 12px 20px;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #482ff7;
+    border: 1px solid #c7c5c5;
+    border-radius: 5px;
+}
+ .tooltip {
+    position: relative;
+    display: inline-block;
+  }
 
 .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom:80%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
 
 .tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
+ .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
-
-<style>
-h1 {text-align: center;}
-h2 {text-align: center;}
-p {text-align: center;}
-div {text-align: center;}
-</style>
-<body>
-
-<h1>Latest key</h1>
-<h1>2022/11/28</h1>
-
-
-<input type="text" value="Test text, copy to clipboard" id="myInput">
-
-<div class="tooltip">
-<button onclick="myFunction()" onmouseout="outFunc()">
-  <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
-  Copy Me
-  </button>
+<div class="text-copy-container">
+    <div class="text-copy-title">
+      <h1>Latest Key</h1>
+      <h2>2022/11/28</h2>
+    </div>
+    <div class="text-copy-input-container">
+      <input type="text" value="Type your text here" id="myInputText">
+        <!-- The button used to copy the text -->
+      <div class="tooltip">
+          <button onclick="copyText()" onmouseout="updateText()">
+              <span class="tooltiptext" id="myTooltipText">Copy to clipboard</span>
+              Copy Text
+          </button>
+      </div>
+    </div>
 </div>
 
-<script>
-function myFunction() {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
-  
-  var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "Copied: " + copyText.value;
-}
+<script>   
+    function copyText() {
+        /* Get the text field */
+      var copyText = document.getElementById("myInputText");
+        /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+        /* Copy the text inside the text field */
+      document.execCommand("copy");
+      
+      var tooltip = document.getElementById("myTooltipText");
+      tooltip.innerHTML = "Copied: " + copyText.value;
+    }
 
-function outFunc() {
-  var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "Copy to clipboard";
-}
+    function updateText() {
+      var tooltip = document.getElementById("myTooltipText");
+      tooltip.innerHTML = "Copy to clipboard";
+    }
 </script>
+
+
 </body>
 </html>
